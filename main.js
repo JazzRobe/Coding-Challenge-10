@@ -31,3 +31,12 @@ purchaseShirtButton.addEventListener("click", () => {
 });
 
 updateStock();
+
+
+//create a checkout event
+
+//task 4: create a checkout event
+
+purchaseShirtButton.addEventListener('click', () => {
+    alert('Shirt added to the cart.');
+});
