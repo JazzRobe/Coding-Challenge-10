@@ -1,17 +1,33 @@
-//add event listeners for product selection
+//task 2: add event listeners for product selection
 
-const shirtPriceElement = document.getElementById('shirtPrice');
-const shirtSizeSelector = document.getElementById('shirtSizeSelector');
+const priceElement = document.getElementById('shirtPrice');
+const sizeSelector = document.getElementById('sizeSelector');
 
-shirtSizeSelector.addEventListener('change', function(event) {
-    const selectedShirtPrice = event.target.value;
-    shirtPriceElement.textContent = `$${selectedShirtPrice}`;
+sizeSelector.addEventListener('change', function(event) {
+    const selectedPrice = event.target.value;
+    priceElement.textContent = `$${selectedPrice}`;
+}); //changes the displayed price of product when clicking different size
+
+
+//task 3: handle stock availability
+
+let shirtsInventory = 5;
+const shirtStock = document.getElementById("shirtStock");
+const purchaseShirtButton = document.getElementById("purchaseShirtButton");
+
+function updateStock() {
+    if (shirtsInventory > 0) {
+        purchaseShirtButton.disabled = false;
+        shirtsInventory.textContent = `In Stock: ${shirtsInventory}`;
+    } else {
+        purchaseShirtButton.disabled = true;
+        shirtsInventory.textContent = 'Out of stock'
+    }
+};
+
+purchaseShirtButton.addEventListener("click", () => {
+    shirtsInventory--;
+    updateStock();
 });
 
-const pantsPriceElement = document.getElementById('pantsPrice');
-const pantsSizeSelector = document.getElementById('pantsSizeSelector');
-
-pantsSizeSelector.addEventListener('change', function(event) {
-    const selectedPantsPrice = event.target.value;
-    pantsPriceElement.textContent = `$${selectedPantsPrice}`;
-});
+updateStock();
